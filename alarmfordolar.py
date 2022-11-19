@@ -1,18 +1,24 @@
-import playsound
-from forex_python.converter import CurrencyRates
-import time 
 
-kur = CurrencyRates()
 
-ilk=kur.get_rate('USD','TRY')
-print(ilk)
+import playsound #library to sound the alarm 
+from forex_python.converter import CurrencyRates #The library that allows us to get the current rate 
+import time #To slow down the while loop 
+
+rate = CurrencyRates() # describing 
+
+first=rate.get_rate('USD','TRY') # Get current rate
+print(first)
+
+
 
 while True:
-    son=kur.get_rate('USD','TRY')
-    print(son)
-    if son>ilk:
-        print(son)
+
+    last=rate.get_rate('USD','TRY')
+    print(last)
+
+    if last>first:
+        print(last)
         playsound('alarm.waw')
-        
-        ilk=son
+        first=last
+
     time.sleep(2)
